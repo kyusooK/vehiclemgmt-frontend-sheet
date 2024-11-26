@@ -1,0 +1,100 @@
+server:
+  port: 8080
+
+
+spring:
+  application:
+    name: standardmanagement
+---
+
+spring:
+  profiles: default
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8090/.well-known/jwks.json
+  datasource:
+    url: ${datasource.url}
+    username: ${datasource.username}
+    password: ${datasource.password}
+    driver-class-name: ${datasource.driver-class-name}
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+
+eureka:
+  client:
+    service-url:
+      defaultZone: http://bureau-service:8082/eureka/
+    enabled: false
+    fetch-registry: false
+    register-with-eureka: false
+
+mybatis:
+  type-aliases-package: com.posco.standardmanagement.s20g01.domain.user.mybatis;com.posco.standardmanagement.s20g01.domain.vehicle.mybatis;
+  mapper-locations: classpath:mybatis.mapper/*.xml
+  configuration:
+    map-underscore-to-camel-case: true
+    default-fetch-size: 250
+
+logging:
+  level:
+    org.hibernate.type: trace
+    org.springframework.cloud: debug
+
+
+server:
+  port: 8083
+
+---
+
+spring:
+  profiles: docker
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+
+
+server:
+  port: 8083
+
+---
+
+spring:
+  profiles: docker
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+        implicit_naming_strategy: org.hibernate.boot.model.naming.ImplicitNamingStrategyComponentPathImpl
+  cloud:
+    stream:
+      kafka:
+        binder:
+          brokers: my-kafka:9092
+        streams:
+          binder:
+            configuration:
+              default:
+                key:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+                value:
+                  serde: org.apache.kafka.common.serialization.Serdes$StringSerde
+      bindings:
+        event-in:
+          group: standardmanagement
+          destination: s20g01
+          contentType: application/json
+        event-out:
+          destination: s20g01
+          contentType: application/json
+
+

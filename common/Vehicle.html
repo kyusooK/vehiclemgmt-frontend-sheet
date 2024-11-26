@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <title>Vehicle</title>
+        <script src="/common/plugins/ibsheet8/ibsheet.js"></script>
+        <script src="/common/plugins/ibsheet8/ibleaders.js"></script>
+        <link rel="stylesheet" type="text/css" href="/common/plugins/ibsheet8/css/default/main.css">
+        <script src="/common/plugins/ibsheet8/locale/ko.js"></script>
+        <script src="/common/plugins/jquery-3.4.1.js"></script>
+        <script src="/common/plugins/i18next.min.js"></script>
+        <script src="/common/js/Vehicle.js"></script>
+    </head>
+    <body>
+        <h1>Standardmanagement</h1>
+        <p>Vehicle</p>
+        <button type="button" class='buttonLabelSearch' onclick="retrieve()">조회</button>
+        <button type="button" class='buttonLabelSave' onclick="save()">저장</button>
+        <button type="button" class='buttonLabelAddRow' onclick="addData()">신규</button>
+        <button type="button" class='buttonLabelDeleteRow' onclick="deleteData()">삭제</button>
+        <div id="sheet_DIV" style="width:100%;height:500px"></div>
+    </body>
+</html>

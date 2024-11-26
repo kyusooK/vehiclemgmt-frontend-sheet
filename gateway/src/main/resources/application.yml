@@ -1,0 +1,77 @@
+server:
+  port: 8088
+
+---
+
+spring:
+  profiles: default
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8090/.well-known/jwks.json
+  cloud:
+    gateway:
+#<<< API Gateway / Routes
+      routes:
+        - id: assignoperation
+          uri: http://localhost:8082
+          predicates:
+            - Path=/carAssignments/**, /vehiclePerformances/**, 
+        - id: standardmanagement
+          uri: http://localhost:8083
+          predicates:
+            - Path=/users/**, /vehicles/**, 
+        - id: oauth
+          uri: http://localhost:8090
+          predicates:
+            - Path=/.well-known/**, /auth/**, /users/**
+        - id: frontend
+          uri: http://localhost:8080
+          predicates:
+            - Path=/**
+#>>> API Gateway / Routes
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+
+---
+
+spring:
+  profiles: docker
+  cloud:
+    gateway:
+      routes:
+        - id: assignoperation
+          uri: http://assignoperation:8080
+          predicates:
+            - Path=/carAssignments/**, /vehiclePerformances/**, 
+        - id: standardmanagement
+          uri: http://standardmanagement:8080
+          predicates:
+            - Path=/users/**, /vehicles/**, 
+        - id: frontend
+          uri: http://frontend:8080
+          predicates:
+            - Path=/**
+      globalcors:
+        corsConfigurations:
+          '[/**]':
+            allowedOrigins:
+              - "*"
+            allowedMethods:
+              - "*"
+            allowedHeaders:
+              - "*"
+            allowCredentials: true
+
+server:
+  port: 8080
