@@ -1,29 +1,31 @@
 $(document).ready(function(){
     var OPT = {
+        "LeftCols": [
+            {"Header": "Id","Type": "Int","Width": 50,"Align": "Center","Name": "id"}
+        ],
         Cols:[
-            { "Header": "Id", "Name": "id", "Type": Int, "Width":120, "CanEdit":1},  
-            { "Header": "RequesterName", "Name": "requesterName", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "Organization", "Name": "organization", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "EmployeeNumber", "Name": "employeeNumber", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "OfficeNumber", "Name": "officeNumber", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "MobileNumber", "Name": "mobileNumber", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "RequestDate", "Name": "requestDate", "Type": Date, "EmptyValue": "날짜를 입력해주세요", "Width":120, "CanEdit":1},  
-            { "Header": "ApproverInfo", "Name": "approverInfo", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "ApproverPosition", "Name": "approverPosition", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "UsagePurpose", "Name": "usagePurpose", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "NumberOfPassengers", "Name": "numberOfPassengers", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "RouteSetting", "Name": "routeSetting", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "Remarks", "Name": "remarks", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "PassengerContact", "Name": "passengerContact", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "AttachedDocuments", "Name": "attachedDocuments", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "CancellationReason", "Name": "cancellationReason", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "UsageCategory", "Name": "usageCategory", "Type": Enum, "Enum": "|BusinessSupport|ExternalActivity", "EnumKeys": "|BusinessSupport|ExternalActivity", "Width":120, "CanEdit":1},  
-            { "Header": "CarType", "Name": "carType", "Type": Enum, "Enum": "|Sedan|Van|Truck", "EnumKeys": "|Sedan|Van|Truck", "Width":120, "CanEdit":1},  
-            { "Header": "MainDepartment", "Name": "mainDepartment", "Type": Enum, "Enum": "|Seoul|Pohang|Gwangyang", "EnumKeys": "|Seoul|Pohang|Gwangyang", "Width":120, "CanEdit":1},  
-            { "Header": "OperationSection", "Name": "operationSection", "Type": Enum, "Enum": "|City|Suburb", "EnumKeys": "|City|Suburb", "Width":120, "CanEdit":1},  
-            { "Header": "OperationType", "Name": "operationType", "Type": Enum, "Enum": "|OneWay|RoundTrip", "EnumKeys": "|OneWay|RoundTrip", "Width":120, "CanEdit":1},  
-            { "Header": "IncludeDriver", "Name": "includeDriver", "Type": Enum, "Enum": "|Yes|No", "EnumKeys": "|Yes|No", "Width":120, "CanEdit":1},  
-            { "Header": "ProgressStage", "Name": "progressStage", "Type": Enum, "Enum": "|All|Received|Rejected|AssignmentCompleted|AssignmentCancelled", "EnumKeys": "|All|Received|Rejected|AssignmentCompleted|AssignmentCancelled", "Width":120, "CanEdit":1},  
+            { "Header": "RequesterName", "Name": "requesterName", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "Organization", "Name": "organization", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "EmployeeNumber", "Name": "employeeNumber", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "OfficeNumber", "Name": "officeNumber", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "MobileNumber", "Name": "mobileNumber", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "RequestDate", "Name": "requestDate", "Type": "Date","Format": "yyyy-MM-dd", "EmptyValue": "날짜를 입력해주세요", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "ApproverInfo", "Name": "approverInfo", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "ApproverPosition", "Name": "approverPosition", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "UsagePurpose", "Name": "usagePurpose", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "NumberOfPassengers", "Name": "numberOfPassengers", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "RouteSetting", "Name": "routeSetting", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "Remarks", "Name": "remarks", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "PassengerContact", "Name": "passengerContact", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "AttachedDocuments", "Name": "attachedDocuments", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "CancellationReason", "Name": "cancellationReason", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "UsageCategory", "Name": "usageCategory", "Type": "Enum", "Enum": "|BusinessSupport|ExternalActivity", "EnumKeys": "|BusinessSupport|ExternalActivity", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "CarType", "Name": "carType", "Type": "Enum", "Enum": "|Sedan|Van|Truck", "EnumKeys": "|Sedan|Van|Truck", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "MainDepartment", "Name": "mainDepartment", "Type": "Enum", "Enum": "|Seoul|Pohang|Gwangyang", "EnumKeys": "|Seoul|Pohang|Gwangyang", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "OperationSection", "Name": "operationSection", "Type": "Enum", "Enum": "|City|Suburb", "EnumKeys": "|City|Suburb", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "OperationType", "Name": "operationType", "Type": "Enum", "Enum": "|OneWay|RoundTrip", "EnumKeys": "|OneWay|RoundTrip", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "IncludeDriver", "Name": "includeDriver", "Type": "Enum", "Enum": "|Yes|No", "EnumKeys": "|Yes|No", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "ProgressStage", "Name": "progressStage", "Type": "Enum", "Enum": "|All|Received|Rejected|AssignmentCompleted|AssignmentCancelled", "EnumKeys": "|All|Received|Rejected|AssignmentCompleted|AssignmentCancelled", "Align": "Center", "Width":120, "CanEdit":1},  
             {"Header": ["Period", "from"], "Name": "from", "Type": "Date", "Width": 110},
 {"Header": ["Period", "to"], "Name": "to", "Type": "Date", "Width": 110}
        ]
@@ -63,6 +65,17 @@ function deleteData(){
 
 function save(){
     var rows = sheet.getSaveJson()?.data;
+
+    rows.forEach(row => {
+        if (row.from && row.to) {
+            row.period = {
+                from: row.from,
+                to: row.to
+            };
+            delete row.from;
+            delete row.to;
+        }
+    });
 
     for(var i=0; i<rows.length;i++){
         if(rows[i].id.includes("AR")){

@@ -1,17 +1,19 @@
 $(document).ready(function(){
     var OPT = {
+        "LeftCols": [
+            {"Header": "등록자 정보","Type": "Text","Width": 50,"Align": "Center","Name": "registrationId"}
+        ],
         Cols:[
-            { "Header": "등록자 정보", "Name": "registrationId", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "차량번호", "Name": "vehicleNumber", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "등록일자", "Name": "registrationDate", "Type": Date, "EmptyValue": "날짜를 입력해주세요", "Width":120, "CanEdit":1},  
-            { "Header": "출발지", "Name": "departure", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "출발시간", "Name": "departureTime", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "운행전 누적 km", "Name": "accumulatedDistanceBefore", "Type": , "Width":120, "CanEdit":1},  
-            { "Header": "도착지", "Name": "destination", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "도착시간", "Name": "arrivalTime", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "운행 후 누적 km", "Name": "accumulatedDistanceAfter", "Type": , "Width":120, "CanEdit":1},  
-            { "Header": "DrivingDistance", "Name": "drivingDistance", "Type": Int, "Width":120, "CanEdit":1},  
-            { "Header": "Purpose", "Name": "purpose", "Type": Enum, "Enum": "|DepartmentWork|BusinessTrip|Commute|Event", "EnumKeys": "|DepartmentWork|BusinessTrip|Commute|Event", "Width":120, "CanEdit":1},  
+            { "Header": "차량번호", "Name": "vehicleNumber", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "등록일자", "Name": "registrationDate", "Type": "Date","Format": "yyyy-MM-dd", "EmptyValue": "날짜를 입력해주세요", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "출발지", "Name": "departure", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "출발시간", "Name": "departureTime", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "운행전 누적 km", "Name": "accumulatedDistanceBefore", "Type": "", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "도착지", "Name": "destination", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "도착시간", "Name": "arrivalTime", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "운행 후 누적 km", "Name": "accumulatedDistanceAfter", "Type": "", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "DrivingDistance", "Name": "drivingDistance", "Type": "Int", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "Purpose", "Name": "purpose", "Type": "Enum", "Enum": "|DepartmentWork|BusinessTrip|Commute|Event", "EnumKeys": "|DepartmentWork|BusinessTrip|Commute|Event", "Align": "Center", "Width":120, "CanEdit":1},  
             {"Header": ["Period", "from"], "Name": "from", "Type": "Date", "Width": 110},
 {"Header": ["Period", "to"], "Name": "to", "Type": "Date", "Width": 110}
        ]
@@ -51,6 +53,17 @@ function deleteData(){
 
 function save(){
     var rows = sheet.getSaveJson()?.data;
+
+    rows.forEach(row => {
+        if (row.from && row.to) {
+            row.period = {
+                from: row.from,
+                to: row.to
+            };
+            delete row.from;
+            delete row.to;
+        }
+    });
 
     for(var i=0; i<rows.length;i++){
         if(rows[i].id.includes("AR")){

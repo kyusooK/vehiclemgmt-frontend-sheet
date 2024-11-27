@@ -1,13 +1,15 @@
 $(document).ready(function(){
     var OPT = {
+        "LeftCols": [
+            {"Header": "Id","Type": "Int","Width": 50,"Align": "Center","Name": "id"}
+        ],
         Cols:[
-            { "Header": "Id", "Name": "id", "Type": Int, "Width":120, "CanEdit":1},  
-            { "Header": "Status", "Name": "status", "Type": , "Enum": "|AVAILABLE|IN_USE|UNDER_MAINTENANCE|DECOMMISSIONED", "EnumKeys": "|AVAILABLE|IN_USE|UNDER_MAINTENANCE|DECOMMISSIONED", "Width":120, "CanEdit":1},  
-            { "Header": "RegistrationNumber", "Name": "registrationNumber", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "Make", "Name": "make", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "Model", "Name": "model", "Type": Text, "Width":120, "CanEdit":1},  
-            { "Header": "Year", "Name": "year", "Type": Int, "Width":120, "CanEdit":1},  
-            { "Header": "DriverDistance", "Name": "driverDistance", "Type": Int, "Width":120, "CanEdit":1},  
+            { "Header": "Status", "Name": "status", "Type": "", "Enum": "|AVAILABLE|IN_USE|UNDER_MAINTENANCE|DECOMMISSIONED", "EnumKeys": "|AVAILABLE|IN_USE|UNDER_MAINTENANCE|DECOMMISSIONED", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "RegistrationNumber", "Name": "registrationNumber", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "Make", "Name": "make", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "Model", "Name": "model", "Type": "Text", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "Year", "Name": "year", "Type": "Int", "Align": "Center", "Width":120, "CanEdit":1},  
+            { "Header": "DriverDistance", "Name": "driverDistance", "Type": "Int", "Align": "Center", "Width":120, "CanEdit":1},  
        ]
    };
 
@@ -45,6 +47,17 @@ function deleteData(){
 
 function save(){
     var rows = sheet.getSaveJson()?.data;
+
+    rows.forEach(row => {
+        if (row.from && row.to) {
+            row.period = {
+                from: row.from,
+                to: row.to
+            };
+            delete row.from;
+            delete row.to;
+        }
+    });
 
     for(var i=0; i<rows.length;i++){
         if(rows[i].id.includes("AR")){
